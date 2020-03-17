@@ -1,5 +1,6 @@
 import axios from 'axios'
 import JSONBig from 'json-bigint'
+import store from '../store'
 // 创建一个axios实例，和原来的axios没有关系
 const instance = axios.create({
   // 构造参数
@@ -14,4 +15,15 @@ const instance = axios.create({
     }
   }]
 })
+instance.interceptors.request.use(function (config) {
+  if (store.state.user.token) {
+    //   统一注入token
+    config.headers.Authorization = `Bearer ${store.state.user.token}`
+  }
+},
+function (error) {
+  // 将错误信息返出来
+  return Promise.reject(error)
+})
+
 export default instance
