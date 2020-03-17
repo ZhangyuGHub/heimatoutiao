@@ -15,6 +15,7 @@ const instance = axios.create({
     }
   }]
 })
+// 请求拦截器注入token，request请求
 instance.interceptors.request.use(function (config) {
   if (store.state.user.token) {
     //   统一注入token
@@ -25,5 +26,21 @@ function (error) {
   // 将错误信息返出来
   return Promise.reject(error)
 })
+// 响应拦截器处理返回数据
+instance.interceptors.response.use(function (response) {
+  // 响应数据  返回得到的响应数据  第一层data是axios默认包data, 第二个data是接口返回里面的包的data
+  // 得到的response其实被axios包裹了一层data
+  try {
+    // 将数据解构
+    return response.data.data
+  } catch (error) {
+    //   返回错误时，将response中的data抛出
+    return response.data
+  }
+},
+function (error) {
+  // 错误的时候 token容易失效
+  return Promise.reject(error)
+})
 
-export default instance
+export default instance// 导出request工具
