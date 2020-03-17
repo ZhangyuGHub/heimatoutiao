@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     // 拿到token
+    // user里边只有token，refreshtoken
     user: auth.getUser()
     // state修改数据必须通过mutations
   },

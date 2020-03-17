@@ -15,6 +15,7 @@ const instance = axios.create({
     }
   }]
 })
+// 拦截器有两个参数，一个成功一个失败。
 // 请求拦截器注入token，request请求
 instance.interceptors.request.use(function (config) {
   if (store.state.user.token) {
@@ -31,10 +32,10 @@ instance.interceptors.response.use(function (response) {
   // 响应数据  返回得到的响应数据  第一层data是axios默认包data, 第二个data是接口返回里面的包的data
   // 得到的response其实被axios包裹了一层data
   try {
-    // 将数据解构
+    // 将数据解构，如果有两层就返回两层
     return response.data.data
   } catch (error) {
-    //   返回错误时，将response中的data抛出
+    //   返回错误时，将response中的data抛出，如果解不出来两层，只有一层，直接返回，axios默认包了一层data
     return response.data
   }
 },
