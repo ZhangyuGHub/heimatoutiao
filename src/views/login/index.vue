@@ -31,6 +31,6 @@ export default {
 
 <style>
 .login-box{
-  padding: 10px;
+  padding: 0.417rem;
 }
 </style>
