@@ -6,6 +6,7 @@ import Vant from 'vant'
 import 'vant/lib/index.css'
 import 'amfe-flexible'
 import '@/styles/index.less'
+import '@/permission'// 引入路由模块
 Vue.use(Vant)
 Vue.config.productionTip = false
 
