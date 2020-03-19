@@ -18,8 +18,8 @@ export default {
   data () {
     return {
       loginForm: {
-        mobile: '', // 手机号
-        code: ''// 验证码
+        mobile: '13911111111', // 手机号
+        code: '111111'// 验证码
       },
       errorMessage: {
         mobile: '', // 手机号错误信息
