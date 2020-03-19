@@ -23,6 +23,7 @@ instance.interceptors.request.use(function (config) {
     //   统一注入token
     config.headers.Authorization = `Bearer ${store.state.user.token}`
   }
+  return config // 返回配置
 },
 function (error) {
   // 将错误信息返出来
