@@ -7,7 +7,9 @@ import 'vant/lib/index.less'
 import 'amfe-flexible'
 import '@/styles/index.less'
 import '@/permission'// 引入路由模块
+import plugin from '@/utils/plugin'
 Vue.use(Vant)
+Vue.use(plugin)
 Vue.config.productionTip = false
 
 new Vue({

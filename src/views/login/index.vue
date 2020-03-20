@@ -57,7 +57,9 @@ export default {
       return true
     },
     async login () {
-      if (this.checkMobile() && this.checkCode()) {
+      const resultMobile = this.checkMobile()
+      const resultCode = this.checkCode()
+      if (resultMobile && resultCode) {
         try {
           const result = await login(this.loginForm)
           // 后端 现在把所有手机号 都认为是成功
@@ -73,7 +75,8 @@ export default {
           this.$router.push(redirectUrl || '/') // 短路表达式
         } catch (error) {
           // 提示消息 提示用户 告诉用户登录失败
-          this.$notify({ message: '用户名或者验证码错误', duration: 800 })
+          // this.$notify({ message: '用户名或者验证码错误', duration: 800 })
+          this.$znotify({ message: '用户名或者验证码错误' })
         }
       }
     }
