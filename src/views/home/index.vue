@@ -1,15 +1,11 @@
 <template>
   <div class='container'>
-  <van-tabs v-model="active">
+  <van-tabs >
   <van-tab :title="`标签${item}`" v-for="item in 7" :key="item">
     <span class="bar_btn">
       <van-icon name="wap-nav" />
     </span>
-    <div class='scroll-wrapper'>
-      <van-cell-group>
-        <van-cell title="标题" value="内容" :key="item" v-for="item in 20"></van-cell>
-      </van-cell-group>
-    </div>
+    <ArticleList></ArticleList>
   </van-tab>
 
 </van-tabs>
@@ -17,8 +13,12 @@
 </template>
 
 <script>
+import ArticleList from './components/article-list'
 export default {
-  name: 'home' // devtools查看组件时  可以看到 对应的name名称
+  name: 'home', // devtools查看组件时  可以看到 对应的name名称
+  components: {
+    ArticleList
+  }
 }
 </script>
 
