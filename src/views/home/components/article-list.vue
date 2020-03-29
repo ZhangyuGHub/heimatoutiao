@@ -1,6 +1,9 @@
 <template>
   <div class="scroll-wrapper">
-      <van-list v-model="upLoading" :finished="finished" @load="onLoad">
+      <van-list finished-text="没有了" v-model="upLoading" :finished="finished" @load="onLoad">
+        <van-cell-group>
+          <van-cell  v-for="item in articles" :key="item" title="左边" :value="'天台排队'+item"></van-cell>
+        </van-cell-group>
       </van-list>
   </div>
 </template>
@@ -10,15 +13,25 @@ export default {
   data () {
     return {
       upLoading: false, // 表示是否开启了上拉加载 默认值false
-      finished: false // 表示 是否已经完成所有数据的加载
+      finished: false, // 表示 是否已经完成所有数据的加载
+      articles: []
     }
   },
   methods: {
     onLoad () {
       console.log('开始加载数据')
-      setTimeout(() => {
+      if (this.articles.length > 50) {
+        // this.upLoading = true
         this.finished = true
-      }, 1000)
+      } else {
+        const arr = Array.from(Array(15), (value, index) => index + 1)
+        this.articles.push(...arr)
+        this.upLoading = false
+      }
+
+      // setTimeout(() => {
+      //   this.finished = true
+      // }, 1000)
     }
   }
 }
